@@ -33,13 +33,28 @@ function play(e) {
     };
     //   console.log(numSquares);
     document.getElementById('grid').innerHTML = ``;
+    //creiamo un generatore di bombe tramite una funzione che scelga sempre di avere un numero fisso in gioco;
+    const numBombs= 16;
+    function bombGenerator(numbomb, indexsquares) {
+        let bombs = [];
+        while (bombs.length < numbomb){
+            let bomb = Math.floor((Math.random() * indexsquares) + 1);
+
+            if(!bombs.includes(bomb)){
+                bombs.push(bomb);
+            }
+
+        }        
+        return bombs;        
+    }
+    let bombs = bombGenerator (numBombs, numSquares);
+    //console.log(bombs);
 
     for (let i = 1; i <= numSquares; i++) {
         document.getElementById('grid').innerHTML += `
-        <div class="square ${level} d-flex align-items-center justify-content-center text-light fw-semibold">${i}</div>
+        <div class="square ${level} d-flex align-items-center justify-content-center text-light fw-semibold"></div>
         `
     }
-
     squares = document.querySelectorAll('.square')
   //  console.log(squares);
     for (let i = 0; i < squares.length; i++) {
