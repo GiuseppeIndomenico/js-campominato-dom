@@ -67,17 +67,17 @@ function play(e) {
             squares[i].classList.add('bomb');
 
         }
-        let squaresBomb = document.querySelectorAll('.bomb');
-      //  console.log(squaresBomb);
-
+        //  console.log(squaresBomb);
+        
         squares[i].addEventListener('click', function () {
+            let squaresBomb = document.querySelectorAll('.bomb');
             //    console.log('sono il tasto numero i:' + i)
             if (!gameOver) {
-
+                
                 if (bombs.includes(parseInt(i))) {
                     for (let k = 0; k < squaresBomb.length; k++) {
                         
-                        squaresBomb[klockb].classList.add('redCheck')
+                        squaresBomb[k].classList.add('redCheck')
 
                         
                     }
