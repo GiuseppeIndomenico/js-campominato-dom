@@ -31,6 +31,7 @@ height: 700px;
 .square{
 border: 1px solid white;
 cursor: pointer;
+color:transparent
 }
 
 .easy{
@@ -50,4 +51,7 @@ height: calc(100% / 7);
 
 .blueCheck{
     background-color: blue;
+}
+.redCheck{
+    background-color: red;
 }

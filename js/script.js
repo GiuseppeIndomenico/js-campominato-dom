@@ -33,22 +33,23 @@ function play(e) {
     };
     //   console.log(numSquares);
     document.getElementById('grid').innerHTML = ``;
+    document.getElementById('finalMessage').innerHTML = '';
     //creiamo un generatore di bombe tramite una funzione che scelga sempre di avere un numero fisso in gioco;
-    const numBombs= 16;
+    const numBombs = 16;
     function bombGenerator(numbomb, indexsquares) {
         let bombs = [];
-        while (bombs.length < numbomb){
-            let bomb = Math.floor((Math.random() * indexsquares) + 1);
+        while (bombs.length < numbomb) {
+            let bomb = Math.floor((Math.random() * indexsquares));
 
-            if(!bombs.includes(bomb)){
+            if (!bombs.includes(bomb)) {
                 bombs.push(bomb);
             }
 
-        }        
-        return bombs;        
+        }
+        return bombs;
     }
-    let bombs = bombGenerator (numBombs, numSquares);
-    //console.log(bombs);
+    let bombs = bombGenerator(numBombs, numSquares);
+    console.log(bombs);
 
     for (let i = 1; i <= numSquares; i++) {
         document.getElementById('grid').innerHTML += `
@@ -56,13 +57,30 @@ function play(e) {
         `
     }
     squares = document.querySelectorAll('.square')
-  //  console.log(squares);
+    let score = 0
+     let gameOver= false
+
+    //  console.log(squares);
     for (let i = 0; i < squares.length; i++) {
 
         squares[i].addEventListener('click', function () {
-          //   console.log('sono il tasto numero i:' + i)
-            squares[i].classList.add('blueCheck');
-       
+            //    console.log('sono il tasto numero i:' + i)
+            if (!gameOver) {
+
+                if (bombs.includes(parseInt(i))) {
+                    // console.log('sono una bomba');
+                    squares[i].classList.add('redCheck')
+                    document.getElementById('finalMessage').innerHTML = `Hai perso!! il tuo punteggio è: ${score}!`
+                    gameOver= true
+                } else {
+                    squares[i].classList.add('blueCheck');
+                    // console.log('sono una casella pulita');
+                    score++;
+                }
+
+
+            }
+
         })
     }
 
