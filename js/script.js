@@ -58,20 +58,34 @@ function play(e) {
     }
     squares = document.querySelectorAll('.square')
     let score = 0
-     let gameOver= false
+    let gameOver = false
 
     //  console.log(squares);
     for (let i = 0; i < squares.length; i++) {
+
+        if (bombs.includes(parseInt(i))) {
+            squares[i].classList.add('bomb');
+
+        }
+        let squaresBomb = document.querySelectorAll('.bomb');
+      //  console.log(squaresBomb);
 
         squares[i].addEventListener('click', function () {
             //    console.log('sono il tasto numero i:' + i)
             if (!gameOver) {
 
                 if (bombs.includes(parseInt(i))) {
+                    for (let k = 0; k < squaresBomb.length; k++) {
+                        
+                        squaresBomb[klockb].classList.add('redCheck')
+
+                        
+                    }
+
                     // console.log('sono una bomba');
-                    squares[i].classList.add('redCheck')
+                    //squaresBomb.classList.add('redCheck')
                     document.getElementById('finalMessage').innerHTML = `Hai perso!! il tuo punteggio è: ${score}!`
-                    gameOver= true
+                    gameOver = true
                 } else {
                     squares[i].classList.add('blueCheck');
                     // console.log('sono una casella pulita');
